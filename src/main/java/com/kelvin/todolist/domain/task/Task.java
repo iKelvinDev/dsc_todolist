@@ -2,6 +2,8 @@ package com.kelvin.todolist.domain.task;
 
 import java.time.LocalDate;
 
+import com.kelvin.todolist.domain.enumeration.TaskPriority;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,5 +31,6 @@ public class Task {
     private String title;
     private String description;
     private LocalDate dueDate;
+    private TaskPriority priority;
     private boolean completed;
 }
