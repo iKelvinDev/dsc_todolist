@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.kelvin.todolist.domain.task.Task;
+import com.kelvin.todolist.domain.task.TaskResponseDTO;
 import com.kelvin.todolist.repository.TaskRepository;
 
 import jakarta.transaction.Transactional;
