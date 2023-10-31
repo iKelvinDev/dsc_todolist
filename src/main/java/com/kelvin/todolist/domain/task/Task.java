@@ -30,6 +30,7 @@ public class Task {
     private Long id;
     private String title;
     private String description;
+    private LocalDate startDate = LocalDate.now();
     private LocalDate dueDate;
     private TaskPriority priority;
     private boolean completed;
