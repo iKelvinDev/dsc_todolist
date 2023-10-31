@@ -6,7 +6,7 @@ import com.kelvin.todolist.domain.enumeration.TaskPriority;
 
 public record TaskResponseDTO(Long id, 
                               String title,
-                              LocalDate duDate,
+                              LocalDate dueDate,
                               TaskPriority priority) {
     
     public TaskResponseDTO(Task task) {
