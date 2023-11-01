@@ -5,5 +5,6 @@ CREATE TABLE task (
     startDate DATE,
     dueDate DATE,
     priority VARCHAR(255) NOT NULL,
-    completed BOOLEAN DEFAULT 0
+    completed BOOLEAN DEFAULT 0,
+    user_id int
 );
