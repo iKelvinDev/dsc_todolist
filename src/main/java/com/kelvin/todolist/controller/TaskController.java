@@ -30,27 +30,27 @@ public class TaskController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<Task> cadastrar(@RequestBody Task task, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<Task> register(@RequestBody Task task, UriComponentsBuilder uriBuilder) {
         Task newTask = repository.save(task);
         var uri = uriBuilder.path("/tasks/{id}").buildAndExpand(newTask.getId()).toUri();
         return ResponseEntity.created(uri).body(newTask);
     }
 
     @GetMapping
-    public ResponseEntity<Page<TaskResponseDTO>> listar(Pageable paginacao) {
+    public ResponseEntity<Page<TaskResponseDTO>> list(Pageable paginacao) {
         Page<TaskResponseDTO> page = repository.findAll(paginacao).map(TaskResponseDTO::new);
         return ResponseEntity.ok(page);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Task> detalhar(@PathVariable Long id) {
+    public ResponseEntity<Task> detail(@PathVariable Long id) {
         Optional<Task> task = repository.findById(id);
         return task.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<Void> excluir(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
