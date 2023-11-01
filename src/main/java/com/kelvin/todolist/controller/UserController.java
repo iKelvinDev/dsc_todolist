@@ -18,7 +18,7 @@ import com.kelvin.todolist.service.TokenService;
 import org.springframework.http.HttpHeaders;
 
 @RestController
-@RequestMapping("usuarios")
+@RequestMapping("users")
 
 public class UserController {
     
@@ -33,7 +33,7 @@ public class UserController {
     
     @PostMapping
     @Transactional
-    public ResponseEntity<Void> register(@RequestBody @Valid User user, UriComponentsBuilder uriBuilder){
+    public ResponseEntity register(@RequestBody @Valid User user, UriComponentsBuilder uriBuilder){
         String passwordEncrypted = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(passwordEncrypted);
         User userLocal = repository.save(user);

@@ -20,6 +20,7 @@ import com.kelvin.todolist.domain.task.TaskResponseDTO;
 import com.kelvin.todolist.repository.TaskRepository;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("tasks")
@@ -30,7 +31,7 @@ public class TaskController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<Task> register(@RequestBody Task task, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<Task> register(@RequestBody @Valid Task task, UriComponentsBuilder uriBuilder) {
         Task newTask = repository.save(task);
         var uri = uriBuilder.path("/tasks/{id}").buildAndExpand(newTask.getId()).toUri();
         return ResponseEntity.created(uri).body(newTask);
@@ -50,7 +51,7 @@ public class TaskController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable @Valid Long id) {
         repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
