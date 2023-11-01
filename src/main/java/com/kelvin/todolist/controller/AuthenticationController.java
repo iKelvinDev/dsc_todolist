@@ -32,8 +32,8 @@ public class AuthenticationController {
   TokenService tokenService;
 
   @PostMapping
-  public ResponseEntity<Object> efetuarLogin(@RequestBody AuthenticationData dados){
-    var token = new UsernamePasswordAuthenticationToken(dados.username(), dados.password());
+  public ResponseEntity<Object> establishLogin(@RequestBody AuthenticationData data){
+    var token = new UsernamePasswordAuthenticationToken(data.username(), data.password());
     var authentication = manager.authenticate(token);
     var tokenJWT = tokenService.generateToken((User) authentication.getPrincipal());
     return ResponseEntity.ok(new TokenDataJWT(tokenJWT));
@@ -44,5 +44,7 @@ public class AuthenticationController {
   public ResponseEntity<String> getPasswordBcrypt(@RequestBody String password){
     String passwordBrypt = bCryptPasswordEncoder.encode(password);
     return ResponseEntity.ok(passwordBrypt);
+
   }
+
 }
